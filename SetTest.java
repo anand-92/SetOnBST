@@ -145,10 +145,78 @@ public abstract class SetTest {
     public final void removeTest3() {
         Set<String> xExp = this.createFromArgsRef("three");
         Set<String> x = this.createFromArgsRef("one", "two", "three");
-       
+
         Set<String> xSubset = this.createFromArgsRef("one", "two");
         x.remove(xSubset);
 
         assertEquals(x, xExp);
+    }
+
+    /*
+     * standard test case for removeAny
+     */
+    @Test
+    public final void removeAnyTest1() {
+        Set<String> x = this.createFromArgsRef("one", "two", "three");
+
+        int xSizeExp = 2;
+
+        x.removeAny();
+
+        assertEquals(x.size(), xSizeExp);
+    }
+
+    /*
+     * standard test case for removeAny, 1 element to empty set
+     */
+    @Test
+    public final void removeAnyTest2() {
+        Set<String> x = this.createFromArgsRef("one");
+
+        int xSizeExp = 0;
+
+        x.removeAny();
+
+        assertEquals(x.size(), xSizeExp);
+    }
+
+    /*
+     * standard test case for contains, 1 element
+     */
+    @Test
+    public final void containsTest1() {
+        Set<String> x = this.createFromArgsRef("one");
+
+        assertEquals(true, x.contains("one"));
+    }
+
+    /*
+     * standard test case for contains, 2+ elements
+     */
+    @Test
+    public final void containsTest2() {
+        Set<String> x = this.createFromArgsRef("one", "two", "three");
+
+        assertEquals(true, x.contains("two"));
+    }
+
+    /*
+     * standard test case for contains, empty set
+     */
+    @Test
+    public final void containsTest3() {
+        Set<String> x = this.createFromArgsRef();
+
+        assertEquals(false, x.contains("two"));
+    }
+
+    /*
+     * standard test case for contains, not in set
+     */
+    @Test
+    public final void containsTest4() {
+        Set<String> x = this.createFromArgsRef("one", "two", "three");
+
+        assertEquals(false, x.contains("four"));
     }
 }
