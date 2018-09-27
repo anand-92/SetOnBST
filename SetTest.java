@@ -219,4 +219,24 @@ public abstract class SetTest {
 
         assertEquals(false, x.contains("four"));
     }
+    
+     /*
+     * standard test case for size, multiple entries
+     */
+    @Test
+    public final void sizeTest1() {
+        Set<String> x = this.createFromArgsRef("one", "two", "three");
+
+        assertEquals(3, x.size());
+    }
+
+    /*
+     * standard test case for size, multiple entries
+     */
+    @Test
+    public final void sizeTest2() {
+        Set<String> x = this.createFromArgsRef();
+
+        assertEquals(0, x.size());
+    }
 }
