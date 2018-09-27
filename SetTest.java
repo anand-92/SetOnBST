@@ -73,6 +73,16 @@ public abstract class SetTest {
     // TODO - add test cases for constructor, add, remove, removeAny, contains, and size
 
     /*
+     * standard test case for Set<String> constructor
+     */
+    @Test
+    public final void constructorTest1() {
+        Set<String> s = this.constructorTest();
+        Set<String> sExpected = this.constructorRef();
+        assertEquals(sExpected, s);
+    }
+    
+    /*
      * standard test case for add
      */
     @Test
