@@ -70,7 +70,6 @@ public abstract class SetTest {
         return set;
     }
 
-    // TODO - add test cases for constructor, add, remove, removeAny, contains, and size
 
     /*
      * standard test case for Set<String> constructor
@@ -96,7 +95,7 @@ public abstract class SetTest {
     }
 
     /*
-     * standard test case for add (empty set)
+     * boundary test case for add (empty set)
      */
     @Test
     public final void addTest2() {
@@ -123,7 +122,7 @@ public abstract class SetTest {
     }
 
     /*
-     * standard test case for remove (1 element)
+     * boundary test case for remove (1 element to empty set)
      */
     @Test
     public final void removeTest1() {
@@ -162,32 +161,31 @@ public abstract class SetTest {
         assertEquals(x, xExp);
     }
 
-    /*
-     * standard test case for removeAny
+     /*
+     * standard test case for Set<String> removeAny method
      */
     @Test
     public final void removeAnyTest1() {
-        Set<String> x = this.createFromArgsRef("one", "two", "three");
-
-        int xSizeExp = 2;
-
-        x.removeAny();
-
-        assertEquals(x.size(), xSizeExp);
+        Set<String> s = this.createFromArgsTest("A", "C");
+        Set<String> sExpected = this.createFromArgsRef("A", "C");
+        String str = s.removeAny();
+        assertEquals(true, sExpected.contains(str));
+        sExpected.remove(str);
+        assertEquals(sExpected, s);
     }
 
+
     /*
-     * standard test case for removeAny, 1 element to empty set
+     * boundary test case for removeAny, 1 element to empty set
      */
     @Test
     public final void removeAnyTest2() {
-        Set<String> x = this.createFromArgsRef("one");
-
-        int xSizeExp = 0;
-
-        x.removeAny();
-
-        assertEquals(x.size(), xSizeExp);
+       Set<String> s = this.createFromArgsTest("A");
+        Set<String> sExpected = this.createFromArgsRef("A");
+        String str = s.removeAny();
+        assertEquals(true, sExpected.contains(str));
+        sExpected.remove(str);
+        assertEquals(sExpected, s);
     }
 
     /*
@@ -211,7 +209,7 @@ public abstract class SetTest {
     }
 
     /*
-     * standard test case for contains, empty set
+     * boundary test case for contains, empty set
      */
     @Test
     public final void containsTest3() {
@@ -241,7 +239,7 @@ public abstract class SetTest {
     }
 
     /*
-     * standard test case for size, multiple entries
+     * boundary test case for size, empty set
      */
     @Test
     public final void sizeTest2() {
