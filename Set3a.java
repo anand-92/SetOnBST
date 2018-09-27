@@ -73,12 +73,37 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
      * @requires IS_BST(t) and x is not in labels(t)
      * @ensures IS_BST(t) and labels(t) = labels(#t) union {x}
      */
-    private static <T extends Comparable<T>> void insertInTree(BinaryTree<T> t,
+   private static <T extends Comparable<T>> void insertInTree(BinaryTree<T> t,
             T x) {
         assert t != null : "Violation of: t is not null";
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        BinaryTree<T> left = t.newInstance();
+        BinaryTree<T> right = t.newInstance();
+        
+        //recursive condition 
+        if(t.size()!=0)
+        {
+            T r=t.disassemble(left, right);
+        
+            //choose which node to recurse into
+            if(x.compareTo(r)<0)
+            {
+                insertInTree(left,x);
+            }
+            else if(x.compareTo(r)>0)
+            {
+                insertInTree(right,x);
+            }
+
+            // assemble back tree
+        t.assemble(r, left, right);
+        }
+        //once insertion point has been found
+        else
+        {
+            t.assemble(x, left, right);
+        }
 
     }
 
